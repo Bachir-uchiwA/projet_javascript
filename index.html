@@ -635,8 +635,9 @@ function handleLogout() {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('username');
     // Rediriger vers la page de connexion
-    window.location.href = 'login.html';
+    window.location.href = '/login.html'; // Chemin absolu
 }
+
 </script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
