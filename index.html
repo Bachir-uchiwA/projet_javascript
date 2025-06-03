@@ -20,6 +20,12 @@
       </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chat Application</title>
+  <script>
+  // Redirige vers la page de connexion si non connecté
+  if (!localStorage.getItem('isLoggedIn')) {
+    window.location.href = '/login.html';
+  }
+</script>
 </head>
   <body class="flex justify-center items-center w-screen h-screen bg-white">
     <div class="flex w-[1700px] h-[900px] bg-white shadow-[0_4px_10px_rgba(0,0,0,0.25)]">
