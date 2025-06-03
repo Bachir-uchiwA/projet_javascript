@@ -297,7 +297,6 @@
               <button id="sendGroupMessageBtn" class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 16 16">
                     <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 1.59 2.498C8 14 8 13 8 12.5a4.5 4.5 0 1 1 5.026-5.025l3.178-4.995.002-.002.26-.41a.5.5 0 0 0-.887-.082l-.18.452z"/>
-                </svg>
               </button>
             </div>
           </div>
@@ -630,5 +629,39 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!-- Placer ce script AVANT le script module -->
 <script type="module" src="src/main.js"></script>
+<script>
+function handleLogout() {
+    // Supprimer les infos de connexion
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('username');
+    // Rediriger vers la page de connexion
+    window.location.href = 'login.html';
+}
+window.handleLogout = handleLogout; // Pour que le HTML puisse l'appeler
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const menuButton = document.getElementById('menuButton');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+
+    if (menuButton && dropdownMenu) {
+        menuButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!dropdownMenu.contains(e.target) && !menuButton.contains(e.target)) {
+                dropdownMenu.classList.add('hidden');
+            }
+        });
+    }
+
+    const userDisplay = document.getElementById('userDisplay');
+    if (userDisplay) {
+        userDisplay.textContent = localStorage.getItem('username') || 'Utilisateur';
+    }
+});
+</script>
   </body>
 </html>
