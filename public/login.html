@@ -287,8 +287,8 @@
         window.handleLogout = function() {
             localStorage.removeItem('isLoggedIn');
             localStorage.removeItem('username');
-            // Redirection robuste : essaye d'abord login.html à la racine, sinon à côté de index.html
-            window.location.href = 'login.html';
+            // Redirection robuste pour Vercel/static
+            window.location.replace(window.location.origin + '/login.html');
         };
         
         // ❌ À SUPPRIMER pour éviter le rechargement automatique sur login.html :
