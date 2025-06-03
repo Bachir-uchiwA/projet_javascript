@@ -284,12 +284,13 @@
             }, 2000);
         }
 
-        function handleLogout() {
+        window.handleLogout = function() {
             localStorage.removeItem('isLoggedIn');
             localStorage.removeItem('username');
-            window.location.href = '/login.html';
-        }
-
+            // Redirection robuste : essaye d'abord login.html à la racine, sinon à côté de index.html
+            window.location.href = 'login.html';
+        };
+        
         // ❌ À SUPPRIMER pour éviter le rechargement automatique sur login.html :
         /*
         if (!localStorage.getItem('isLoggedIn')) {

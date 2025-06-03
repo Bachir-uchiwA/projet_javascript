@@ -630,38 +630,32 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- Placer ce script AVANT le script module -->
 <script type="module" src="src/main.js"></script>
 <script>
-function handleLogout() {
-    // Supprimer les infos de connexion
+window.handleLogout = function() {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('username');
-    // Rediriger vers la page de connexion
-    window.location.href = '/login.html'; // Chemin absolu
-}
-
+    window.location.href = 'login.html';
+};
 </script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const menuButton = document.getElementById('menuButton');
     const dropdownMenu = document.getElementById('dropdownMenu');
-
     if (menuButton && dropdownMenu) {
         menuButton.addEventListener('click', function(e) {
             e.stopPropagation();
             dropdownMenu.classList.toggle('hidden');
         });
-
         document.addEventListener('click', function(e) {
             if (!dropdownMenu.contains(e.target) && !menuButton.contains(e.target)) {
                 dropdownMenu.classList.add('hidden');
             }
         });
     }
-
     const userDisplay = document.getElementById('userDisplay');
     if (userDisplay) {
         userDisplay.textContent = localStorage.getItem('username') || 'Utilisateur';
     }
 });
 </script>
-  </body>
+</body>
 </html>
